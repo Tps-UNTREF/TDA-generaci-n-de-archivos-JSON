@@ -20,4 +20,8 @@ typedef struct _Json {
 
 }Json;
 
+
+void generarJson(Json* json);
+
+
 #endif /* JSON_H_ */
