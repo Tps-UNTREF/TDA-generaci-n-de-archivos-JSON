@@ -3,9 +3,6 @@
 
 int main(int argc, char** argv) {
 	int modo;
-
-	Json *json;
-
 	printf(
 			"Por favor elija un modo: \n1-Imprimir Json Consola\n2-Guardar Json en un archivo\n ");
 	fflush( stdout);
