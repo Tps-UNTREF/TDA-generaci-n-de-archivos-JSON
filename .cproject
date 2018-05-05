@@ -93,14 +93,10 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="TDA-generaci-n-de-archivos-JSON.cdt.managedbuild.target.gnu.cygwin.exe.437676606" name="Executable" projectType="cdt.managedbuild.target.gnu.cygwin.exe"/>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cygwin.exe.debug.1563436578;cdt.managedbuild.config.gnu.cygwin.exe.debug.1563436578.;cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.debug.1164055913;cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.1612492527">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cygwin.exe.release.2108226250;cdt.managedbuild.config.gnu.cygwin.exe.release.2108226250.;cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.16472080;cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.294608249">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cygwin.exe.release.546453205;cdt.managedbuild.config.gnu.cygwin.exe.release.546453205.;cdt.managedbuild.tool.gnu.c.compiler.cygwin.exe.release.35898085;cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.370306677">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
@@ -108,6 +104,4 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>
