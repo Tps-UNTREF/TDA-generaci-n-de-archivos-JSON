@@ -24,7 +24,7 @@ void njson_agregar_dato(Json* this, char* nombre, void* valor, unsigned tam_valo
 		strcpy(this->valor->nombre, nombre);
 		this->valor->dato = malloc(tam_valor);
 		memcpy(this->valor->dato, valor, tam_valor);
-		printf("%s: %d\n", this->valor->nombre, *(this->valor->dato));
+		printf("%s: %d\n", this->valor->nombre, *(int*)(this->valor->dato));
 	} else {
 
 		//todo buscar el proximo elemento del valor que este vacio

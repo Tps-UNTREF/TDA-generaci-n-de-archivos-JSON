@@ -3,7 +3,7 @@
 
 typedef struct _valor {
 	char* nombre;
-	int* dato;
+	void* dato;
 	struct _valor* prox_elem;
 //	void (*funcion_imprimir)(void*);
 } Valor;
@@ -17,7 +17,7 @@ void njson_init(Json* this);
 
 void liberar_nombre(Json* this);
 
-void njson_agregar_dato(Json* this, char* nombre, int* valor, unsigned tam_valor);
+void njson_agregar_dato(Json* this, char* nombre, void* valor, unsigned tam_valor);
 
 void imprimir_json_consola(Json* this);
 void generar_json_en_archivo(Json* this, char destino);
