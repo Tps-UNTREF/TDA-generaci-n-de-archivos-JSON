@@ -5,7 +5,7 @@ typedef struct _valor {
 	char* nombre;
 	void* dato;
 	struct _valor* prox_elem;
-//	void (*funcion_imprimir)(void*);
+	void (*funcion_imprimir)(void*);
 } Valor;
 
 typedef struct _Json {
@@ -17,10 +17,10 @@ void njson_init(Json* this);
 
 void liberar_nombre(Json* this);
 
-void njson_agregar_dato(Json* this, char* nombre, void* valor, unsigned tam_valor);
+void njson_agregar_dato(Json* this, char* nombre, void* valor, unsigned tam_valor, void (*funcion_imprimir)(void*));
 
-void imprimir_json_consola(Json* this);
-void generar_json_en_archivo(Json* this, char destino);
+void njson_imprimir(Json* this);
+void njson_generar_en_archivo(Json* this, char destino);
 
 
 
