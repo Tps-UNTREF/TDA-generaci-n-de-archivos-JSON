@@ -25,8 +25,14 @@ void imprimir_array(void* dato) {
 
 }
 
-int main(int argc, char** argv) {
+int main() {
+
+	Njson nodo;
+	Njson nodo2;
 	Json n_json;
+	Njson* lista;
+	int uno = 1;
+	int dos = 2;
 	int modo;
 	printf(
 			"Por favor elija un modo: \n1-Crear Json\n2-Imprimir Json Consola\n3-Guardar Json en un archivo\n ");
@@ -34,13 +40,9 @@ int main(int argc, char** argv) {
 	scanf("%d", &modo);
 	switch (modo) {
 	case (1):
-		njson_init(&n_json);
-		int uno = 1;
-		int cinco = 5;
-		int siete = 7;
-		njson_agregar_dato(&n_json, "Dato 1", &uno, sizeof(int), &imprimir_int);
-//		njson_agregar_dato(&n_json, "Dato 2", &cinco, sizeof(int));
-//		njson_agregar_dato(&n_json, "Dato 3", &siete, sizeof(int));
+	    lista = (njson_agregar_dato_al_nodo(&nodo,"uno",&uno,sizeof(int)));
+	    json_init(&n_json, &lista,1);
+	    njson_agregar_nodo(&n_json,njson_agregar_dato_al_nodo(&nodo2,"dos",&dos,sizeof(int)));
 		njson_imprimir(&n_json);
 		liberar_nombre(&n_json);
 		break;

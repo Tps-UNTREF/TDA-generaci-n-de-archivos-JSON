@@ -4,60 +4,71 @@
 
 #include "Json.h"
 
-void njson_init(Json* this) {
+void json_init(Json* this, Njson** lista, int cant){
+
 	this->nombre = malloc(strlen("njson"));
-	strcpy(this->nombre, "njson");
-	this->valor->dato = 0x0;
-	this->valor->nombre = 0x0;
-	this->valor->prox_elem = 0x0;
-	this->valor->funcion_imprimir = 0x0;
+
+	strcpy(this->nombre,"njson");
+
+	this->cantidad = cant;
+
+	this->lista = malloc(cant*sizeof(Njson));
+
+	memcpy(this->lista,lista,cant*(sizeof(Njson)));
+
 }
 
-void valor_init(Valor* thisvalor) {
-	thisvalor->nombre = 0x0;
-	thisvalor->dato = 0x0;
-	thisvalor->prox_elem = 0x0;
-	thisvalor->funcion_imprimir = 0x0;
+
+Njson* njson_agregar_dato_al_nodo(Njson* this, char* nombre, int* valor, unsigned tam_valor){
+
+	this->clave = (char*)malloc(strlen(nombre) + 1);
+	strcpy(this->clave, nombre);
+	this->valor = malloc(tam_valor);
+	memcpy(this->valor, valor, tam_valor);
+
+	return this;
 }
 
-void njson_agregar_dato(Json* this, char* nombre, void* valor, unsigned tam_valor, void (*funcion_imprimir)(void*)) {
-	if(this->valor->dato == 0x0) {
-		this->valor->nombre = malloc(strlen(nombre)+1);
-		strcpy(this->valor->nombre, nombre);
-		this->valor->dato = malloc(tam_valor);
-		memcpy(this->valor->dato, valor, tam_valor);
-		this->valor->funcion_imprimir = funcion_imprimir;
-//		printf("%s: %s\n", this->valor->nombre, *(char*)(this->valor->dato));
-	} else {
+Json* njson_agregar_nodo(Json* this, Njson* nodo){
 
-		//todo buscar el proximo elemento del valor que este vacio
+	if(nodo !=0x0){
 
-		Valor proximo;
-		valor_init(&proximo);
-		this->valor->prox_elem = &proximo;
-		this->valor->prox_elem->nombre = malloc(strlen(nombre)+1);
-		strcpy(this->valor->prox_elem->nombre, nombre);
-		this->valor->prox_elem->dato = malloc(tam_valor);
-		memcpy(this->valor->prox_elem->dato, valor, tam_valor);
-		printf("%s: %d\n", this->valor->prox_elem->nombre, *(int*)(this->valor->prox_elem->dato));
-	}
+    	this->lista = realloc(this->lista,2*sizeof(Njson));
+
+    	memcpy(this->lista + 1*sizeof(Njson) ,nodo,sizeof(Njson));
+
+
+
+    }
+
+	return this;
+
 }
+
 
 void liberar_nombre(Json* this) {
-	free(this->nombre);
-	this->nombre = 0x0;
-	free(this->valor->dato);
-	free(this->valor->nombre);
-	this->valor->dato = 0x0;
-	this->valor->nombre = 0x0;
+	if(this->lista){
+		free(this->nombre);
+		this->nombre = 0x0;
+		free (this->lista[0]->clave);
+		this->lista[0]->clave = 0x0;
+		free (this->lista[0]->valor);
+		this->lista[0]->valor = 0x0;
+		free (this->lista[1]->clave);
+		this->lista[1]->clave = 0x0;
+		free (this->lista[1]->valor);
+		this->lista[1]->valor = 0x0;
 
+	}
+
+	free(this->lista);
+	this->lista = 0x0;
 }
 
 void njson_imprimir(Json* this) {
-	printf("%s: ", this->valor->nombre);
-//	this->valor->funcion_imprimir(this->valor->dato);
-}
-
-void njson_generar_en_archivo(Json* json, char destino) {
-
+	printf("%s: ", this->nombre);
+	printf("%s: ", this->lista[0]->clave);
+	printf("%d: ", *(int*)(this->lista[0]->valor));
+	printf("%s: ", this->lista[1]->clave);
+    printf("%d: ", *(int*)(this->lista[1]->valor));
 }
