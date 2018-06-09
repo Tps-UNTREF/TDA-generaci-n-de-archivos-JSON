@@ -1,15 +1,15 @@
 #ifndef JSON_H_
 #define JSON_H_
 
-
 typedef struct _Njson {
 	char* clave;
-	int* valor;
-	//void (*funcion_imprimir)(void*);
+	int elementos;
+	int tipo;
+	void* valor;
+	void (*funcion_imprimir)(void*);
 } Njson;
 
 typedef struct _Json {
-	char* nombre;
 	Njson** lista;
 	int cantidad;
 } Json;
@@ -17,13 +17,19 @@ typedef struct _Json {
 
 void json_init(Json* this, Njson** lista, int cant);
 
-void liberar_nombre(Json* this);
+void liberar_json(Json* this);
 
-Json* njson_agregar_nodo(Json* this, Njson* nodo);
+void liberar_nodo(Njson* nodo);
 
-Njson* njson_agregar_dato_al_nodo(Njson* this, char* nombre, int* valor, unsigned tam_valor);
+void njson_cambiar_valor(Json* this,char* clave_buscar, void* valor,int elementos, unsigned tipo, void (*funcion_imprimir)(void*));
 
-void njson_imprimir(Json* this);
+Json* json_agregar_nodo(Json* this, Njson* nodo);
+
+Njson* njson_agregar_dato_al_nodo(Njson* this, char* nombre, void* valor,int elementos, unsigned tipo, void (*funcion_imprimir)(void*));
+
+void json_imprimir(Json* this);
+
+void njson_imprimir(Njson* this);
 
 void njson_generar_en_archivo(Json* this, char destino);
 
