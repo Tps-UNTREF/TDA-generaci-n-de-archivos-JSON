@@ -18,17 +18,22 @@ void json_init(Json* this, Njson** lista, int cant){
 
 void njson_imprimir(Njson* nodo){
 
-	if(nodo->elementos == 1){
-		printf("%s", nodo->clave);
-	    (*(nodo->funcion_imprimir))(nodo->valor);
-	}else{
+    if(nodo->elementos == 1){
+        printf("%s: ", nodo->clave);
+        (*(nodo->funcion_imprimir))(nodo->valor);
+        printf("\n");
+    }else{
 
-		for(int i = 0; i < nodo->elementos; i++){
+        printf("%s: [", nodo->clave);
 
-			(*(nodo->funcion_imprimir))(nodo->valor + (i*nodo->tipo));
+        for(int i = 0; i < nodo->elementos; i++){
 
-		}
-	}
+            (*(nodo->funcion_imprimir))(nodo->valor + (i*nodo->tipo));
+            printf(" ");
+
+        }
+        printf("]\n");
+    }
 
 }
 
