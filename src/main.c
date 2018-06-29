@@ -2,6 +2,11 @@
 #include "json.h"
 #include <stdbool.h>
 
+/**
+ * Funciones para imprimir de cada tipo
+ * Precondición: Entra un dato de tipo void
+ * Postcondición: Imprime el dato dependiendo de su tipo
+ */
 void imprimir_int(void* dato) {
 	printf("%d", *(int*) (dato));
 }
@@ -33,6 +38,11 @@ void imprimir_boolean(void* dato) {
 	}
 }
 
+/**
+ * Funciones para escribir en el archivo de cada tipo
+ * Precondición: Entra un archivo y un dato de tipo void
+ * Postcondición: Escribe el dato en el archivo
+ */
 void escribir_en_archivo_int(FILE* archivo_de_salida,void* dato) {
 	fprintf(archivo_de_salida,"%d", *(int*) (dato));
 }
@@ -103,6 +113,9 @@ void imprimir_json(void* this) {
 
 int main(int argc, char** argv) {
 
+	/**
+	 * Creación de nodos
+	 */
 	Njson nodo1;
 	Njson nodo2;
 	Njson nodo3;
@@ -130,9 +143,17 @@ int main(int argc, char** argv) {
 	Njson nodo25;
 	Njson nodo26;
 	Njson nodo27;
+
+	/**
+	 * Creación de Jsons
+	 */
 	Json principal;
 	Json secundario;
 	Json terciario;
+
+	/**
+	 * Creación de los datos
+	 */
 	bool is_dir = false;
 	bool is_dir2 = false;
 	bool thumb_exists = true;
@@ -146,82 +167,84 @@ int main(int argc, char** argv) {
 	int revision = 14511;
 	int revision2 = 29007;
 
-	njson_agregar_dato_al_nodo(&nodo1, "Size", "0 bytes", 1, sizeof("0 bytes"),
-			&imprimir_string,&escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo2, "Hash", "3764154sdas64564da54", 1,
-			sizeof("3764154sdas64564da54"), &imprimir_string,&escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo3, "Bytes", &bytes, 1, sizeof(int),
-			&imprimir_int,&escribir_en_archivo_int);
-	njson_agregar_dato_al_nodo(&nodo4, "Thumb_exists", &thumb_exists, 1,
-			sizeof(bool), &imprimir_boolean,&escribir_en_archivo_boolean);
-	njson_agregar_dato_al_nodo(&nodo5, "Rev", "3387392739hdh", 1,
-			sizeof("3387392739hdh"), &imprimir_string, &escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo6, "modified",
-			"Wed, 27 Apr 2014 22:18:51 +0000", 1,
-			sizeof("Wed, 27 Apr 2014 22:18:51 +0000"), &imprimir_string,&escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo7, "Path", "/Photos", 1, sizeof("/Photos"),
-			&imprimir_string, &escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo8, "is_dir", &is_dir, 1, sizeof(bool),
-			&imprimir_boolean, &escribir_en_archivo_boolean);
-	njson_agregar_dato_al_nodo(&nodo9, "icon", "folder", 1, sizeof("folder"),
-			&imprimir_string, &escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo10, "root", "dropbox", 1, sizeof("dropbox"),
-			&imprimir_string, &escribir_en_archivo_string);
-	Njson* lista[10] = { &nodo1, &nodo2, &nodo3, &nodo4, &nodo5, &nodo6, &nodo7,
-			&nodo8, &nodo9, &nodo10 };
+	/**
+	 * Agrega los datos al nodo
+	 */
+	njson_agregar_dato(&nodo1, "Size", "0 bytes", 1, sizeof("0 bytes"), &imprimir_string,&escribir_en_archivo_string);
+	njson_agregar_dato(&nodo2, "Hash", "3764154sdas64564da54", 1, sizeof("3764154sdas64564da54"), &imprimir_string,&escribir_en_archivo_string);
+	njson_agregar_dato(&nodo3, "Bytes", &bytes, 1, sizeof(int), &imprimir_int,&escribir_en_archivo_int);
+	njson_agregar_dato(&nodo4, "Thumb_exists", &thumb_exists, 1, sizeof(bool), &imprimir_boolean,&escribir_en_archivo_boolean);
+	njson_agregar_dato(&nodo5, "Rev", "3387392739hdh", 1, sizeof("3387392739hdh"), &imprimir_string, &escribir_en_archivo_string);
+	njson_agregar_dato(&nodo6, "modified", "Wed, 27 Apr 2014 22:18:51 +0000", 1,
+								sizeof("Wed, 27 Apr 2014 22:18:51 +0000"), &imprimir_string,&escribir_en_archivo_string);
+	njson_agregar_dato(&nodo7, "Path", "/Photos", 1, sizeof("/Photos"), &imprimir_string, &escribir_en_archivo_string);
+	njson_agregar_dato(&nodo8, "is_dir", &is_dir, 1, sizeof(bool), &imprimir_boolean, &escribir_en_archivo_boolean);
+	njson_agregar_dato(&nodo9, "icon", "folder", 1, sizeof("folder"), &imprimir_string, &escribir_en_archivo_string);
+	njson_agregar_dato(&nodo10, "root", "dropbox", 1, sizeof("dropbox"), &imprimir_string, &escribir_en_archivo_string);
+
+	/**
+	 * Creación del Json principal
+	 */
+	Njson* lista[10] = { &nodo1, &nodo2, &nodo3, &nodo4, &nodo5, &nodo6, &nodo7, &nodo8, &nodo9, &nodo10 };
 	json_init(&principal, lista, 10);
-	njson_agregar_dato_al_nodo(&nodo12, "Size", "2.3 MB", 1, sizeof("2.3 MB"),
-			&imprimir_string, &escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo13, "Rev", "4654dsd4s54d5", 1,
-			sizeof("4654dsd4s54d5"), &imprimir_string, &escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo14, "Thumb_exists", &thumb_exists2, 1,
-			sizeof(bool), &imprimir_boolean, &escribir_en_archivo_boolean);
-	njson_agregar_dato_al_nodo(&nodo15, "Bytes", &bytes2, 1, sizeof(int),
-			&imprimir_int, &escribir_en_archivo_int);
-	njson_agregar_dato_al_nodo(&nodo16, "modified",
-			"Mon, 07 Apr 2013 01:12:02 +0000", 1,
-			sizeof("Mon, 07 Apr 2013 01:12:02 +0000"), &imprimir_string, &escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo17, "client mtime",
-			"Thu, 29 Aug 2013 01:12:02 +0000", 1,
-			sizeof("Thu, 29 Aug 2013 01:12:02 +0000"), &imprimir_string, &escribir_en_archivo_string);
-	njson_agregar_dato_al_nodo(&nodo18, "Path", "/Photos/flowers.jpg", 1,
-			sizeof("/Photos/flowers.jpg"), &imprimir_string, &escribir_en_archivo_string);
-	Njson* lista2[7] = { &nodo12, &nodo13, &nodo14, &nodo15, &nodo16, &nodo17,
-			&nodo18 };
+
+	/**
+	 * Agrega datos a otros nodos
+	 */
+	njson_agregar_dato(&nodo12, "Size", "2.3 MB", 1, sizeof("2.3 MB"), &imprimir_string, &escribir_en_archivo_string);
+	njson_agregar_dato(&nodo13, "Rev", "4654dsd4s54d5", 1, sizeof("4654dsd4s54d5"), &imprimir_string, &escribir_en_archivo_string);
+	njson_agregar_dato(&nodo14, "Thumb_exists", &thumb_exists2, 1, sizeof(bool), &imprimir_boolean, &escribir_en_archivo_boolean);
+	njson_agregar_dato(&nodo15, "Bytes", &bytes2, 1, sizeof(int), &imprimir_int, &escribir_en_archivo_int);
+	njson_agregar_dato(&nodo16, "modified", "Mon, 07 Apr 2013 01:12:02 +0000", 1,
+								sizeof("Mon, 07 Apr 2013 01:12:02 +0000"), &imprimir_string, &escribir_en_archivo_string);
+	njson_agregar_dato(&nodo17, "client mtime", "Thu, 29 Aug 2013 01:12:02 +0000", 1,
+								sizeof("Thu, 29 Aug 2013 01:12:02 +0000"), &imprimir_string, &escribir_en_archivo_string);
+	njson_agregar_dato(&nodo18, "Path", "/Photos/flowers.jpg", 1, sizeof("/Photos/flowers.jpg"), &imprimir_string, &escribir_en_archivo_string);
+
+	/**
+	 * Creación del Json secundario, que será contenido en el Json principal
+	 */
+	Njson* lista2[7] = { &nodo12, &nodo13, &nodo14, &nodo15, &nodo16, &nodo17, &nodo18 };
 	json_init(&secundario, lista2, 7);
-	njson_agregar_dato_al_nodo(&nodo20, "lat_long", &array, 2, sizeof(double),
-			&imprimir_double, &escribir_en_archivo_double);
-	njson_agregar_dato_al_nodo(&nodo21, "time_taken",
-			"Wed, 28 Aug 2013 18:12:02 +0000", 1,
-			sizeof("Wed, 28 Aug 2013 18:12:02 +0000"), &imprimir_string, &escribir_en_archivo_string);
+
+	/**
+	 * Agrega datos a otros nodos
+	 */
+	njson_agregar_dato(&nodo20, "lat_long", &array, 2, sizeof(double), &imprimir_double, &escribir_en_archivo_double);
+	njson_agregar_dato(&nodo21, "time_taken", "Wed, 28 Aug 2013 18:12:02 +0000", 1,
+								sizeof("Wed, 28 Aug 2013 18:12:02 +0000"), &imprimir_string, &escribir_en_archivo_string);
+
+	/**
+	 * Creación del Json terciario
+	 */
 	Njson* lista3[2] = { &nodo20, &nodo21 };
 	json_init(&terciario, lista3, 2);
-	njson_agregar_dato_al_nodo(&nodo19, "photo_info", &terciario, 1,
-			sizeof(Json), &imprimir_json, &escribir_en_archivo_json);
-	json_agregar_nodo(&secundario, &nodo19);
-	json_agregar_nodo(&secundario,
-			njson_agregar_dato_al_nodo(&nodo22, "is_dir", &is_dir2, 1,
-					sizeof(bool), &imprimir_boolean, &escribir_en_archivo_boolean));
-	json_agregar_nodo(&secundario,
-			njson_agregar_dato_al_nodo(&nodo23, "icon", "page_white_picture", 1,
-					sizeof("page_white_picture"), &imprimir_string, &escribir_en_archivo_string));
-	json_agregar_nodo(&secundario,
-			njson_agregar_dato_al_nodo(&nodo24, "root", "dropbox", 1,
-					sizeof("dropbox"), &imprimir_string, &escribir_en_archivo_string));
-	json_agregar_nodo(&secundario,
-			njson_agregar_dato_al_nodo(&nodo25, "mime_type", "image/jpeg", 1,
-					sizeof("image/jpeg"), &imprimir_string, &escribir_en_archivo_string));
-	json_agregar_nodo(&secundario,
-			njson_agregar_dato_al_nodo(&nodo26, "revision", &revision, 1,
-					sizeof(int), &imprimir_int, &escribir_en_archivo_int));
-	njson_agregar_dato_al_nodo(&nodo11, "contents", &secundario, 1,
-			sizeof(Json), &imprimir_json, &escribir_en_archivo_json);
-	json_agregar_nodo(&principal, &nodo11);
-	json_agregar_nodo(&principal,
-			njson_agregar_dato_al_nodo(&nodo27, "revision", &revision2, 1,
-					sizeof(int), &imprimir_int, &escribir_en_archivo_int));
-	njson_cambiar_valor(&principal, "Bytes", &nuevobytes, 1, sizeof(int),
-			imprimir_int, &escribir_en_archivo_int);
+
+	/**
+	 * Agrega el Json terciario a un nodo y mete los nodos en el Json
+	 */
+	njson_agregar_dato(&nodo19, "photo_info", &terciario, 1, sizeof(Json), &imprimir_json, &escribir_en_archivo_json);
+	json_agregar_njson(&secundario, &nodo19);
+	json_agregar_njson(&secundario, njson_agregar_dato(&nodo22, "is_dir", &is_dir2, 1, sizeof(bool), &imprimir_boolean, &escribir_en_archivo_boolean));
+	json_agregar_njson(&secundario, njson_agregar_dato(&nodo23, "icon", "page_white_picture", 1,
+						sizeof("page_white_picture"), &imprimir_string, &escribir_en_archivo_string));
+	json_agregar_njson(&secundario, njson_agregar_dato(&nodo24, "root", "dropbox", 1,
+						sizeof("dropbox"), &imprimir_string, &escribir_en_archivo_string));
+	json_agregar_njson(&secundario, njson_agregar_dato(&nodo25, "mime_type", "image/jpeg", 1,
+						sizeof("image/jpeg"), &imprimir_string, &escribir_en_archivo_string));
+	json_agregar_njson(&secundario, njson_agregar_dato(&nodo26, "revision", &revision, 1, sizeof(int), &imprimir_int, &escribir_en_archivo_int));
+	njson_agregar_dato(&nodo11, "contents", &secundario, 1, sizeof(Json), &imprimir_json, &escribir_en_archivo_json);
+	json_agregar_njson(&principal, &nodo11);
+	json_agregar_njson(&principal, njson_agregar_dato(&nodo27, "revision", &revision2, 1, sizeof(int), &imprimir_int, &escribir_en_archivo_int));
+
+	/**
+	 * Modifica el valor de un nodo
+	 */
+	njson_cambiar_valor(&principal, "Bytes", &nuevobytes, 1, sizeof(int), imprimir_int, &escribir_en_archivo_int);
+
+	/**
+	 * Impresión del Json
+	 */
 	json_imprimir(&principal);
 
 	if(argc==3 && !strcmp(argv[1], "-f")){
@@ -231,7 +254,10 @@ int main(int argc, char** argv) {
 		json_escribir_en_archivo(fopen("principal.json", "w+"),&principal);
 	}
 
-	liberar_json(&terciario);
-	liberar_json(&secundario);
-	liberar_json(&principal);
+	/**
+	 * Libera la memoria
+	 */
+	json_liberar(&terciario);
+	json_liberar(&secundario);
+	json_liberar(&principal);
 }
