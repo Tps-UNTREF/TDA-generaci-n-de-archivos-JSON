@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "json.h"
 #include <stdbool.h>
+#include <string.h>
 
 /**
  * Funciones para imprimir de cada tipo
@@ -247,11 +248,9 @@ int main(int argc, char** argv) {
 	 */
 	json_imprimir(&principal);
 
-	if(argc==3 && !strcmp(argv[1], "-f")){
+	if(argc==3 && strcmp(argv[1], "-f") == 0){
 		FILE* archivo_de_salida = fopen(argv[2], "w+");
 		json_escribir_en_archivo(archivo_de_salida,&principal);
-	}else{
-		json_escribir_en_archivo(fopen("principal.json", "w+"),&principal);
 	}
 
 	/**
