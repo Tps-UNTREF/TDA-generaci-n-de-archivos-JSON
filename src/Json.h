@@ -18,6 +18,8 @@ typedef struct _Json {
 
 void json_init(Json* this, Njson** lista, int cant);
 
+void json_escribir_en_archivo(FILE* archivo_de_salida, Json* this);
+
 void json_liberar(Json* this);
 
 void njson_liberar(Njson* nodo);
