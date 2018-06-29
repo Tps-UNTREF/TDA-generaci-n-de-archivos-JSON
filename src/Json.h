@@ -33,10 +33,6 @@ void njson_imprimir(Njson* this);
 
 void njson_generar_en_archivo(Json* this, char destino);
 
-
-
-
-
 //Metodos Valor
 //void valor_init(Valor* thisvalor);
 

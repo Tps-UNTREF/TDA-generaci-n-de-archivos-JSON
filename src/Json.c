@@ -19,9 +19,8 @@ void json_init(Json* this, Njson** lista, int cant){
 void njson_imprimir(Njson* nodo){
 
     if(nodo->elementos == 1){
-        printf(" \" %s \" :", nodo->clave);
+        printf(" \"%s\" :", nodo->clave);
         (*(nodo->funcion_imprimir))(nodo->valor);
-        printf("\n");
     }else{
         printf("%s: {", nodo->clave);
 
@@ -31,7 +30,7 @@ void njson_imprimir(Njson* nodo){
             printf(" ");
 
         }
-        printf("}\n");
+        printf("}");
     }
 
 }
@@ -115,11 +114,14 @@ void json_imprimir(Json* this) {
 
 	for(int i = 0; i < this->cantidad; i++){
 
-		if(i != 0){
-		  printf(",");
-		}
 		  njson_imprimir(this->lista[i]);
 
+		  if(i != (this->cantidad - 1)){
+			 printf(",");
+			 printf("\n");
+		  }
+
 	}
+	printf("\n");
 	printf("}");
 }
