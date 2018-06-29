@@ -7,6 +7,7 @@ typedef struct _Njson {
 	int tipo;
 	void* valor;
 	void (*funcion_imprimir)(void*);
+	void (*funcion_escribir)(FILE*,void*);
 } Njson;
 
 typedef struct _Json {
@@ -21,11 +22,11 @@ void liberar_json(Json* this);
 
 void liberar_nodo(Njson* nodo);
 
-void njson_cambiar_valor(Json* this,char* clave_buscar, void* valor,int elementos, unsigned tipo, void (*funcion_imprimir)(void*));
+void njson_cambiar_valor(Json* this,char* clave_buscar, void* valor,int elementos, unsigned tipo, void (*funcion_imprimir)(void*),void (*funcion_escribir)(FILE* archivo_de_salida,void*));
 
 Json* json_agregar_nodo(Json* this, Njson* nodo);
 
-Njson* njson_agregar_dato_al_nodo(Njson* this, char* nombre, void* valor,int elementos, unsigned tipo, void (*funcion_imprimir)(void*));
+Njson* njson_agregar_dato_al_nodo(Njson* this, char* nombre, void* valor,int elementos, unsigned tipo, void (*funcion_imprimir)(void*),void (*funcion_escribir)(FILE* archivo_de_salida,void*));
 
 void json_imprimir(Json* this);
 
