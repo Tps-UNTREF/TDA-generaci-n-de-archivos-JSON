@@ -18,7 +18,7 @@ void imprimir_double(void* dato) {
 
 void imprimir_string(void* dato) {
 
-	printf("%s", (char*) dato);
+	printf(" \"%s\" ", (char*) dato);
 
 }
 
@@ -54,7 +54,7 @@ void escribir_en_archivo_double(FILE* archivo_de_salida,void* dato) {
 
 void escribir_en_archivo_string(FILE* archivo_de_salida,void* dato) {
 
-	fprintf(archivo_de_salida,"%s", (char*) dato);
+	fprintf(archivo_de_salida," \"%s\" ", (char*) dato);
 
 }
 
@@ -169,6 +169,7 @@ int main(int argc, char** argv) {
 	int revision2 = 29007;
 
 	/**
+	 *
 	 * Agrega los datos al nodo
 	 */
 	njson_agregar_dato(&nodo1, "Size", "0 bytes", 1, sizeof("0 bytes"), &imprimir_string,&escribir_en_archivo_string);
@@ -241,8 +242,11 @@ int main(int argc, char** argv) {
 	/**
 	 * Modifica el valor de un nodo
 	 */
-	njson_cambiar_valor(&principal, "Bytes", &nuevobytes, 1, sizeof(int), imprimir_int, &escribir_en_archivo_int);
+	njson_cambiar_valor(&principal, "Bytes", &nuevobytes, 1, sizeof(int), &imprimir_int, &escribir_en_archivo_int);
 
+	/**
+	 * CASO 1: IMPRIME JSON GENERAL-------NOTA: COMENTAR LOS DEMAS CASOS CUANDO SE ESTE PROBANDO UNO.
+	 */
 	/**
 	 * Impresión del Json
 	 */
@@ -261,4 +265,80 @@ int main(int argc, char** argv) {
 	json_liberar(&terciario);
 	json_liberar(&secundario);
 	json_liberar(&principal);
+
+	/**
+	 * FIN DEL CASO 1
+	 */
+
+
+
+
+
+
+	/**
+	 *
+	 * CASO 2: CAMBIAR NODO CONTEST POR EL VALOR 1-------NOTA: COMENTAR LOS DEMAS CASOS CUANDO SE ESTE PROBANDO UNO.
+	 *
+	 */
+//	json_liberar(&terciario);
+//	json_liberar(&secundario);
+//	int nuevo_valor = 1;
+//	njson_cambiar_valor(&principal,"contents",&nuevo_valor,1,sizeof(int),&imprimir_int, &escribir_en_archivo_int);
+//
+//	json_imprimir(&principal);
+//
+//    if(argc==3 && strcmp(argv[1], "-f") == 0){
+//	    FILE* archivo_de_salida = fopen(argv[2], "w+");
+//	    json_escribir_en_archivo(archivo_de_salida,&principal);
+//	}else{
+//		json_escribir_en_archivo(fopen("principal.json", "w+"),&principal);
+//	}
+//
+//    json_liberar(&principal);
+
+    /**
+     * FIN CASO 2
+     *
+     */
+
+
+
+
+
+
+    /**
+    *
+    * CASO 3: METER UN NODO AL JSON, COMO VALOR UN ARREGLO [1,2,3]-------NOTA: COMENTAR LOS DEMAS CASOS CUANDO SE ESTE PROBANDO UNO.
+    *
+    */
+
+//    int arreglo[3];
+//    arreglo[0] = 1;
+//    arreglo[1] = 2;
+//    arreglo[2] = 3;
+//    Njson nuevo_nodo;
+//    njson_agregar_dato(&nuevo_nodo,"nuevo",&arreglo,3,sizeof(int),&imprimir_int, &escribir_en_archivo_int);
+//    json_agregar_njson(&principal, &nuevo_nodo);
+//
+//    json_imprimir(&principal);
+//
+//    if(argc==3 && strcmp(argv[1], "-f") == 0){
+//    	FILE* archivo_de_salida = fopen(argv[2], "w+");
+//    	json_escribir_en_archivo(archivo_de_salida,&principal);
+//    }else{
+//    	json_escribir_en_archivo(fopen("principal.json", "w+"),&principal);
+//    }
+//
+//    json_liberar(&terciario);
+//    json_liberar(&secundario);
+//    json_liberar(&principal);
+
+    /**
+     *
+     * FIN CASO 3
+     *
+     */
+
+
+
 }

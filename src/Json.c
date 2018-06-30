@@ -33,15 +33,19 @@ void njson_imprimir(Njson* nodo){
         printf(" \"%s\" :", nodo->clave);
         (*(nodo->funcion_imprimir))(nodo->valor);
     }else{
-        printf("%s: {", nodo->clave);
+        printf("\"%s\": [", nodo->clave);
 
         for(int i = 0; i < nodo->elementos; i++){
 
+        	if(i != 0){
+        		printf(",");
+        	}
+
             (*(nodo->funcion_imprimir))(nodo->valor + (i*nodo->tipo));
-            printf(" ");
+
 
         }
-        printf("}");
+        printf("]");
     }
 
 }
@@ -214,15 +218,18 @@ void njson_escribir_en_archivo(FILE* archivo_de_salida,Njson* nodo){
         fprintf(archivo_de_salida," \"%s\" :", nodo->clave);
         (*(nodo->funcion_escribir))(archivo_de_salida,nodo->valor);
     }else{
-    	fprintf(archivo_de_salida,"%s: {", nodo->clave);
+    	fprintf(archivo_de_salida,"\"%s\": [", nodo->clave);
 
         for(int i = 0; i < nodo->elementos; i++){
 
+        	if(i != 0){
+        		fprintf(archivo_de_salida,",");
+        	}
+
             (*(nodo->funcion_escribir))(archivo_de_salida,nodo->valor + (i*nodo->tipo));
-            fprintf(archivo_de_salida," ");
 
         }
-        fprintf(archivo_de_salida,"}");
+        fprintf(archivo_de_salida,"]");
     }
 
 }
